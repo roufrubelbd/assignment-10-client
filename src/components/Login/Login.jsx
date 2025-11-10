@@ -86,7 +86,7 @@ const Login = () => {
               Forgot password?
             </Link>
           </div>
-          <button className="btn bg-emerald-400 hover:bg-emerald-600 text-white">
+          <button className="btn btn-sm btn-outline rounded-full">
             Login
           </button>
         </form>

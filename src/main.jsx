@@ -15,6 +15,7 @@ import Add from "./components/Add/Add.jsx";
 import Products from "./components/Products/Products.jsx";
 import Login from "./components/Login/Login.jsx";
 import Register from "./components/Register/Register.jsx";
+import Details from "./components/Details/Details.jsx";
 
 
 export const AuthContext = createContext(null);
@@ -38,7 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/products",
         Component: Products
-        // loader: () => fetch("/services.json").then((res) => res.json()),
+      },
+      {
+        path: "/products/:id",
+        Component: Details
       },
       {
         path: "/login",

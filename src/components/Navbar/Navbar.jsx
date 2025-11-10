@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOutUser } = use(AuthContext);
-    const handleLogout = () => {
+  const handleLogout = () => {
     logOutUser()
       .then(() => {
         toast.success("Logged out successfully");
@@ -23,7 +23,7 @@ const Navbar = () => {
     <>
       <NavLink
         className={({ isActive }) =>
-          isActive ? "text-blue-500 underline font-bold" : ""
+          isActive ? "text-gray-500 underline font-bold" : ""
         }
         to="/"
       >
@@ -33,7 +33,7 @@ const Navbar = () => {
       </NavLink>
       <NavLink
         className={({ isActive }) =>
-          isActive ? "text-blue-500 underline font-bold" : ""
+          isActive ? "text-gray-500 underline font-bold" : ""
         }
         to="/products"
       >
@@ -41,42 +41,40 @@ const Navbar = () => {
           <a>Products</a>
         </li>
       </NavLink>
-      {
-        user && (
-          <>
+      {user && (
+        <>
           <NavLink
-        className={({ isActive }) =>
-          isActive ? "text-blue-500 underline font-bold" : ""
-        }
-        to="/exports"
-      >
-        <li>
-          <a>My Exports</a>
-        </li>
-      </NavLink>
+            className={({ isActive }) =>
+              isActive ? "text-gray-500 underline font-bold" : ""
+            }
+            to="/exports"
+          >
+            <li>
+              <a>My Exports</a>
+            </li>
+          </NavLink>
           <NavLink
-        className={({ isActive }) =>
-          isActive ? "text-blue-500 underline font-bold" : ""
-        }
-        to="/imports"
-      >
-        <li>
-          <a>My Imports</a>
-        </li>
-      </NavLink>
+            className={({ isActive }) =>
+              isActive ? "text-gray-500 underline font-bold" : ""
+            }
+            to="/imports"
+          >
+            <li>
+              <a>My Imports</a>
+            </li>
+          </NavLink>
           <NavLink
-        className={({ isActive }) =>
-          isActive ? "text-blue-500 underline font-bold" : ""
-        }
-        to="/add"
-      >
-        <li>
-          <a>Add Export</a>
-        </li>
-      </NavLink>
-            </>
-        )
-      }
+            className={({ isActive }) =>
+              isActive ? "text-gray-500 underline font-bold" : ""
+            }
+            to="/add"
+          >
+            <li>
+              <a>Add Export</a>
+            </li>
+          </NavLink>
+        </>
+      )}
     </>
   );
 
@@ -122,7 +120,7 @@ const Navbar = () => {
         {user ? (
           <div className="navbar-end flex gap-2 items-center">
             <button
-              className="btn btn-outline btn-sm text-blue-600"
+              className="btn btn-outline btn-sm rounded-full"
               onClick={handleLogout}
             >
               Logout
@@ -141,10 +139,10 @@ const Navbar = () => {
         ) : (
           <div className="navbar-end flex gap-2 items-center">
             <Link to="/login">
-              <a className="btn btn-outline btn-sm text-blue-600">Login</a>
+              <a className="btn btn-outline btn-sm rounded-full ">Login</a>
             </Link>
             <Link to="/register">
-              <a className="btn btn-outline btn-sm text-blue-600">Register</a>
+              <a className="btn btn-outline btn-sm rounded-full ">Register</a>
             </Link>
           </div>
         )}

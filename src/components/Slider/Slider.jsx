@@ -84,7 +84,7 @@ const Slider = () => {
                   transition={{ duration: 1, delay: 0.4 }}
                 >
                   <Link to="/services">
-                    <button className="mt-6 bg-gray-300 hover:bg-gray-400 text-gray-600 font-semibold px-4 py-1 rounded-full shadow-lg hover:shadow-emerald-400/40 transition-all duration-300 text-sm">
+                    <button className="mt-6 btn btn-outline btn-sm px-4 py-1 rounded-full shadow-lg hover:shadow-emerald-400/40 transition-all duration-300">
                       Jump on Store →
                     </button>
                   </Link>
