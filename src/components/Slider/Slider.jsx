@@ -57,10 +57,10 @@ const Slider = () => {
               />
 
               {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-white/90 via-white/70 to-transparent"></div>
 
               {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-6">
+              <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-blue-700 px-6">
                 <motion.h2
                   className="text-3xl md:text-5xl font-bold mb-3 drop-shadow-lg"
                   initial={{ opacity: 0, y: 30 }}

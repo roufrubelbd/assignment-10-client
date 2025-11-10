@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link, useParams } from "react-router";
+import Spinner from "../Spinner/Spinner";
+import { AuthContext } from "../../main";
 
 const Details = () => {
-  const { id } = useParams(); 
+    const { user } = use(AuthContext);
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -12,7 +15,7 @@ const Details = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products/${id}`) 
+      .get(`http://localhost:5000/products/${id}`)
       .then((res) => {
         setProduct(res.data);
         setLoading(false);
@@ -23,29 +26,23 @@ const Details = () => {
       });
   }, [id]);
 
-  const Skeleton = () => (
-    <div className="max-w-4xl mx-auto p-4 space-y-4 animate-pulse">
-      <div className="h-64 bg-gray-200 rounded-lg"></div>
-      <div className="h-6 bg-gray-300 rounded w-3/4"></div>
-      <div className="h-4 bg-gray-300 rounded w-1/2"></div>
-      <div className="h-4 bg-gray-300 rounded w-1/3"></div>
-      <div className="h-4 bg-gray-300 rounded w-1/4"></div>
-      <div className="h-10 bg-gray-300 rounded w-1/2"></div>
-    </div>
-  );
-
-  if (loading) return <Skeleton />;
+  if (loading) return <Spinner />;
   if (!product) return <p className="text-center mt-10">Product not found!</p>;
 
- 
   const handleImport = async () => {
     try {
       if (importQty <= 0 || importQty > product.availableQuantity) return;
 
-      await axios.post(`http://localhost:5000/import/${id}`, { quantity: importQty });
+      await axios.post(`http://localhost:5000/imports/${id}`, {
+        quantity: importQty,
+        userEmail: user?.email, 
+      });
 
       toast.success(`Successfully imported ${importQty} units`);
-      setProduct({ ...product, availableQuantity: product.availableQuantity - importQty });
+      setProduct({
+        ...product,
+        availableQuantity: product.availableQuantity - importQty,
+      });
       setImportQty(0);
       setShowModal(false);
     } catch (error) {
@@ -65,10 +62,14 @@ const Details = () => {
         </figure>
         <div className="card-body lg:w-1/2">
           <h2 className="text-2xl font-bold">{product.name}</h2>
-          <p className="text-gray-700 font-semibold text-lg">Price: ${product.price}</p>
+          <p className="text-gray-700 font-semibold text-lg">
+            Price: ${product.price}
+          </p>
           <p className="text-gray-600">Origin: {product.originCountry}</p>
           <p className="text-gray-600">Rating: {product.rating}</p>
-          <p className="text-gray-600">Available Quantity: {product.availableQuantity}</p>
+          <p className="text-gray-600">
+            Available Quantity: {product.availableQuantity}
+          </p>
           <p className="text-gray-600">Category: {product.category}</p>
 
           <button
@@ -81,7 +82,9 @@ const Details = () => {
         </div>
       </div>
 
-      <Link to="/products" className="btn btn-outline btn-sm mt-6 rounded-full">&larr; Back to All Products</Link>
+      <Link to="/products" className="btn btn-outline btn-sm mt-6 rounded-full">
+        &larr; Back to All Products
+      </Link>
 
       {/* Modal */}
       {showModal && (
@@ -107,7 +110,9 @@ const Details = () => {
               <button
                 className="btn btn-sm btn-outline rounded-full"
                 onClick={handleImport}
-                disabled={importQty <= 0 || importQty > product.availableQuantity}
+                disabled={
+                  importQty <= 0 || importQty > product.availableQuantity
+                }
               >
                 Submit
               </button>
