@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
@@ -7,30 +7,36 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
+import { AuthContext } from "../../main";
+import Spinner from "../Spinner/Spinner";
 
 const Slider = () => {
+  const { loading } = use(AuthContext);
 
   const slides = [
-  {
-    id: 1,
-    image: "https://i.postimg.cc/CLjX3YG0/ban1.png",
-    title: "Upgrade Your Digital Lifestyle",
-    subtitle: "Explore the latest laptops, wearables, and accessories in one place.",
-  },
-  {
-    id: 2,
-    image: "https://i.postimg.cc/B6kR0n7W/ban2.png",
-    title: "Innovation Starts Here",
-    subtitle: "Discover smart solutions designed for modern professionals.",
-  },
-  {
-    id: 3,
-    image: "https://i.postimg.cc/BnCWKsb2/ban3.png",
-    title: "Future of Technology in Your Hands",
-    subtitle: "Experience cutting-edge devices built for performance and style.",
-  },
-];
+    {
+      id: 1,
+      image: "https://i.postimg.cc/CLjX3YG0/ban1.png",
+      title: "Upgrade Your Digital Lifestyle",
+      subtitle:
+        "Explore the latest laptops, wearables, and accessories in one place.",
+    },
+    {
+      id: 2,
+      image: "https://i.postimg.cc/B6kR0n7W/ban2.png",
+      title: "Innovation Starts Here",
+      subtitle: "Discover smart solutions designed for modern professionals.",
+    },
+    {
+      id: 3,
+      image: "https://i.postimg.cc/BnCWKsb2/ban3.png",
+      title: "Future of Technology in Your Hands",
+      subtitle:
+        "Experience cutting-edge devices built for performance and style.",
+    },
+  ];
 
+  if (loading) return <Spinner />;
 
   return (
     <div className="container mx-auto relative">
@@ -53,7 +59,12 @@ const Slider = () => {
                 className="w-full h-full object-cover"
                 initial={{ scale: 1 }}
                 animate={{ scale: 1.1 }}
-                transition={{ duration: 4, ease: "easeOut", repeat: Infinity, repeatType: "mirror" }}
+                transition={{
+                  duration: 4,
+                  ease: "easeOut",
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                }}
               />
 
               {/* Gradient overlay */}
@@ -83,7 +94,7 @@ const Slider = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.4 }}
                 >
-                  <Link to="/services">
+                  <Link to="/products">
                     <button className="mt-6 btn btn-outline btn-sm px-4 py-1 rounded-full shadow-lg hover:shadow-emerald-400/40 transition-all duration-300">
                       Jump on Store →
                     </button>

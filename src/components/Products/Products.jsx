@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import axios from "axios";
+import Spinner from "../Spinner/Spinner";
+import { AuthContext } from "../../main";
+import toast from "react-hot-toast";
 
-export default function AllProducts() {
+const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -14,26 +17,12 @@ export default function AllProducts() {
         setLoading(false);
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err.response?.data?.message || err.message);
         setLoading(false);
       });
   }, []);
 
- // Skeleton card component
-  const Skeleton = () => (
-    <div className="card bg-base-100 shadow-lg border border-gray-200 animate-pulse">
-      <div className="p-4 h-48 bg-gray-200 rounded-lg mb-4"></div>
-      <div className="card-body space-y-2">
-        <div className="h-4 bg-gray-300 rounded w-3/4"></div>
-        <div className="h-4 bg-gray-300 rounded w-1/2"></div>
-        <div className="h-4 bg-gray-300 rounded w-1/3"></div>
-        <div className="h-8 bg-gray-300 rounded w-1/2 mt-2"></div>
-      </div>
-    </div>
-  );
-
-
-    if (loading) return <Skeleton />;
+    if (loading) return <Spinner />;
 
   if (!products.length)
     return <p className="text-center mt-10">No products found!</p>;
@@ -76,4 +65,6 @@ export default function AllProducts() {
       </div>
     </div>
   );
-}
+};
+
+export default AllProducts;

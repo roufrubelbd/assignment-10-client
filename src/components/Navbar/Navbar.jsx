@@ -4,9 +4,6 @@ import logo from "../../assets/logo.png";
 import { AuthContext } from "../../main";
 import toast from "react-hot-toast";
 
-// All Products,My Exports, My Imports, Add Export routes
-// Login/Register
-
 const Navbar = () => {
   const { user, logOutUser } = use(AuthContext);
   const handleLogout = () => {
