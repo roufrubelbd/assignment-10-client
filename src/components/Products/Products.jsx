@@ -11,7 +11,7 @@ const AllProducts = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/products") 
+      .get("http://localhost:5000/products")
       .then((res) => {
         setProducts(res.data);
         setLoading(false);
@@ -22,7 +22,7 @@ const AllProducts = () => {
       });
   }, []);
 
-    if (loading) return <Spinner />;
+  if (loading) return <Spinner />;
 
   if (!products.length)
     return <p className="text-center mt-10">No products found!</p>;
@@ -36,7 +36,7 @@ const AllProducts = () => {
             key={product._id}
             className="card bg-base-100 shadow-lg border border-gray-200"
           >
-            <figure className="p-4">
+            <figure className="px-4 pt-4">
               <img
                 src={product.image}
                 alt={product.name}
@@ -45,19 +45,29 @@ const AllProducts = () => {
             </figure>
             <div className="card-body">
               <h3 className="card-title">{product.name}</h3>
-              <p className="text-gray-700 font-semibold">Price: ${product.price}</p>
-              <p className="text-gray-600 text-sm">Origin: {product.originCountry}</p>
-              <p className="text-gray-600 text-sm">Rating: {product.rating} </p>
-              <p className="text-gray-600 text-sm">
-                Available: {product.availableQuantity}
+              <p className="text-gray-700 font-semibold">
+                Price: ${product.price}
               </p>
-              <div className="card-actions justify-end mt-2">
-                <Link
-                  to={`/products/${product._id}`}
-                  className="btn btn-outline btn-sm rounded-full"
-                >
-                  See Details
-                </Link>
+              <p className="text-gray-600 text-sm">
+                Origin: {product.originCountry}
+              </p>
+              <div className="flex justify-between gap-4">
+                <div>
+                  <p className="text-gray-600 text-sm">
+                    Rating: {product.rating}{" "}
+                  </p>
+                  <p className="text-gray-600 text-sm">
+                    Available: {product.availableQuantity}
+                  </p>
+                </div>
+                <div className="card-actions justify-end mt-2">
+                  <Link
+                    to={`/products/${product._id}`}
+                    className="btn btn-outline btn-sm rounded-full"
+                  >
+                    See Details
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

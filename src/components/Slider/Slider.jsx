@@ -39,7 +39,7 @@ const Slider = () => {
   if (loading) return <Spinner />;
 
   return (
-    <div className="container mx-auto relative">
+    <div className="container mx-auto relative mt-6 mb-20">
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         navigation

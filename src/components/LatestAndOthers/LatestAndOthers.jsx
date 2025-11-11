@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Spinner from "../Spinner/Spinner";
 
 const LatestAndOthers = () => {
   const [latestProducts, setLatestProducts] = useState([]);
@@ -20,18 +21,7 @@ const LatestAndOthers = () => {
       });
   }, []);
 
-  const Skeleton = () => (
-    <div className="max-w-4xl mx-auto p-4 space-y-4 animate-pulse">
-      <div className="h-64 bg-gray-200 rounded-lg"></div>
-      <div className="h-6 bg-gray-300 rounded w-3/4"></div>
-      <div className="h-4 bg-gray-300 rounded w-1/2"></div>
-      <div className="h-4 bg-gray-300 rounded w-1/3"></div>
-      <div className="h-4 bg-gray-300 rounded w-1/4"></div>
-      <div className="h-10 bg-gray-300 rounded w-1/2"></div>
-    </div>
-  );
-
-  if (loading) return <Skeleton />;
+  if (loading) return <Spinner />;
   if (!latestProducts.length)
     return <p className="text-center mt-10">No latest products found!</p>;
 
@@ -61,19 +51,23 @@ const LatestAndOthers = () => {
                 <p className="text-gray-600 text-sm">
                   Origin: {product.originCountry}
                 </p>
-                <p className="text-gray-600 text-sm">
-                  Rating: {product.rating}
-                </p>
-                <p className="text-gray-600 text-sm">
-                  Available: {product.availableQuantity}
-                </p>
-                <div className="card-actions justify-end mt-2">
-                  <Link
-                    to={`/products/${product._id}`}
-                    className="btn btn-outline rounded-full btn-sm"
-                  >
-                    See Details
-                  </Link>
+                <div className="flex justify-between gap-4">
+                  <div>
+                    <p className="text-gray-600 text-sm">
+                      Rating: {product.rating}
+                    </p>
+                    <p className="text-gray-600 text-sm">
+                      Available: {product.availableQuantity}
+                    </p>
+                  </div>
+                  <div className="card-actions justify-end mt-2">
+                    <Link
+                      to={`/products/${product._id}`}
+                      className="btn btn-outline rounded-full btn-sm"
+                    >
+                      See Details
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -82,7 +76,7 @@ const LatestAndOthers = () => {
       </section>
 
       {/* Extra Section 1 - Top Categories */}
-      <section className="text-center mt-16">
+      <section className="text-center my-20">
         <h2 className="text-3xl font-bold mb-6">Top Categories</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div className="p-6 bg-blue-50 rounded-2xl shadow hover:scale-105 transition">
@@ -111,9 +105,7 @@ const LatestAndOthers = () => {
             </p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold mb-2">
-               Quality Guaranteed
-            </h3>
+            <h3 className="text-xl font-semibold mb-2">Quality Guaranteed</h3>
             <p className="text-gray-200">
               We only sell verified, high-quality products.
             </p>

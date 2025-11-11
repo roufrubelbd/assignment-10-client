@@ -1,4 +1,4 @@
-import {useState } from "react";
+import { useState } from "react";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -6,12 +6,13 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-//   updateProfile,
+  // updateProfile,
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { useEffect } from "react";
 import { auth } from "../firebase/firebase.init";
 import { AuthContext } from "../main";
+import toast from "react-hot-toast";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -34,30 +35,29 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-//   const updateUserProfile = (name, photoURL) => {
-//     setLoading(true);
-//     if (!auth.currentUser) {
-//       toast.error("No user logged in");
-//       return; 
-//     }
-//     return updateProfile(auth.currentUser, {
-//       displayName: name,
-//       photoURL: photoURL,
-//     }).then(() => {
-//       setUser({
-//         ...auth.currentUser,
-//         displayName: name,
-//         photoURL,
-//       });
-//       setLoading(false);
-//     });
-//   };
+  // const updateUserProfile = (name, photoURL) => {
+  //   setLoading(true);
+  //   if (!auth.currentUser) {
+  //     toast.error("No user logged in");
+  //     return;
+  //   }
+  //   return updateProfile(auth.currentUser, {
+  //     displayName: name,
+  //     photoURL: photoURL,
+  //   }).then(() => {
+  //     setUser({
+  //       ...auth.currentUser,
+  //       displayName: name,
+  //       photoURL,
+  //     });
+  //     setLoading(false);
+  //   });
+  // };
 
   const resetPassword = (email) => {
-  setLoading(true);
-  return sendPasswordResetEmail(auth, email);
-};
-
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  };
 
   const logOutUser = () => {
     setLoading(true);
@@ -67,6 +67,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      // console.log(currentUser);
       setLoading(false);
     });
     return () => unsubscribe();

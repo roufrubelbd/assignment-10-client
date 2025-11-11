@@ -3,10 +3,11 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../main";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-  const { createUser, googleLogin, setLoading, setUser } = use(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const { createUser, googleLogin, setLoading, setUser } = use(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,10 +34,21 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        setUser(user);
-        toast.success("User registered successfully!");
-        form.reset();
-        navigate("/");
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
+        updateProfile(user, {
+          displayName: name,
+          photoURL: photoURL,
+        })
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photoURL });
+            toast.success("User registered successfully!");
+            form.reset();
+            navigate("/");
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          });
         setLoading(false);
       })
       .catch((error) => {
