@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 const Login = () => {
-  const { loginUser, googleLogin, setLoading, setUser } = use(AuthContext);
+  const { loginUser, googleLogin, setLoading, setUser, theme } = use(AuthContext);
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -50,13 +50,13 @@ const Login = () => {
       });
   };
   return (
-    <div className=" bg-emerald-50  text-center min-h-screen flex items-center justify-center">
-      <div className="p-6 bg-white rounded-lg shadow-sm space-y-3 w-4/5 md:w-1/3 lg:w-1/3 mx-auto border border-base-300">
-        <h1 className="text-2xl font-bold text-emerald-500">Login here!</h1>
-        <form onSubmit={handleLogin} className=" bg-base-100  space-y-2">
+    <div className=" bg-linear-to-r from-blue-600 to-black mt-6  text-center min-h-screen flex items-center justify-center">
+      <div className={`p-6 ${theme === "light" ? "bg-white" : "bg-gray-200"} rounded-lg shadow-sm space-y-3 w-4/5 md:w-1/3 lg:w-1/3 mx-auto border border-base-300`}>
+        <h1 className="text-2xl font-bold text-blue-500">Login here!</h1>
+        <form onSubmit={handleLogin} className={` ${theme === "light" ? "bg-white" : "bg-gray-200"}  space-y-2`}>
           <input
             type="email"
-            className="input w-full"
+            className={`input w-full ${theme === "light" ? "input-bordered" : "input-bordered bg-white text-black"}`}
             name="email"
             placeholder="Your Email"
             value={email}
@@ -65,7 +65,7 @@ const Login = () => {
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
-              className="input w-full pr-10"
+              className={`input w-full pr-10 ${theme === "light" ? "input-bordered" : "input-bordered bg-white text-black"}`}
               name="password"
               placeholder="Your Password"
             />
@@ -86,24 +86,24 @@ const Login = () => {
               Forgot password?
             </Link>
           </div>
-          <button className="btn btn-sm btn-outline rounded-full">
+          <button className={`btn btn-outline rounded-full px-6 ${theme === "light" ? "" : "bg-white text-black"}`}>
             Login
           </button>
         </form>
 
         <div>
-          New here?{" "}
+          <span className={`${theme === "light" ? "text-black" : "text-gray-800"}`}>New here?</span>{" "}
           <Link to="/register" className="text-blue-600 font-medium underline">
             Register
           </Link>
         </div>
         <div>
-          <p>or</p>
+          <p className={`${theme === "light" ? "text-black" : "text-gray-800"}`}>or</p>
         </div>
 
         <button
           onClick={handleGoogleLogin}
-          className="btn bg-white text-black border-emerald-300"
+          className="btn bg-white text-black border-blue-300"
         >
           <svg
             aria-label="Google logo"

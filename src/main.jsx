@@ -16,6 +16,7 @@ import Products from "./components/Products/Products.jsx";
 import Login from "./components/Login/Login.jsx";
 import Register from "./components/Register/Register.jsx";
 import Details from "./components/Details/Details.jsx";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 
 export const AuthContext = createContext(null);
 
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/products/:id",
-        Component: Details,
+        element: <PrivateRoute><Details /></PrivateRoute>,
       },
       {
         path: "/login",
@@ -51,15 +52,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/exports",
-        Component: Exports,
+        element: <PrivateRoute><Exports /></PrivateRoute>,
       },
       {
         path: "/imports",
-        Component: Imports,
+        element: <PrivateRoute><Imports /></PrivateRoute>,
       },
       {
         path: "/add",
-        Component: Add,
+        element: <PrivateRoute><Add /></PrivateRoute>,
       },
     ],
   },
