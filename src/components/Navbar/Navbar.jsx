@@ -15,7 +15,7 @@ const Navbar = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-    const handleChangeTheme = (checked) => {
+  const handleChangeTheme = (checked) => {
     setTheme(checked ? "dark" : "light");
   };
 
@@ -88,8 +88,6 @@ const Navbar = () => {
     </>
   );
 
-
-
   return (
     <div className="container mx-auto">
       <div className="navbar bg-base-100">
@@ -122,7 +120,11 @@ const Navbar = () => {
           </div>
           <Link to="/">
             <a className="text-xl">
-              <img src={`${theme === "light" ? logo : logo_dark}`} alt="logo" className="h-12" />
+              <img
+                src={`${theme === "light" ? logo : logo_dark}`}
+                alt="logo"
+                className="h-12"
+              />
             </a>
           </Link>
         </div>

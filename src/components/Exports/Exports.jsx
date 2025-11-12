@@ -103,15 +103,18 @@ const Exports = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-2">My Exported Products</h2>
+      <div className="flex flex-col md:flex-row lg:flex-row justify-between items-center md:mb-6 lg:mb-6 ">
+        <div>
+          <h2 className="text-3xl font-bold mb-2">My Exported Products</h2>
       <p
-        className={`mb-6 text-lg ${
+        className={` text-lg ${
           theme === "light" ? "text-gray-500" : "text-gray-300"
         }`}
       >
         Manage all the products you’ve exported from your inventory.
       </p>
-      <div className="mb-6">
+        </div>
+        <div className="mb-6">
         <CSVLink
           data={products}
           filename={"my-exports.csv"}
@@ -120,8 +123,8 @@ const Exports = () => {
           Download CSV
         </CSVLink>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      </div>   
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map((product) => (
           <div
             key={product._id}
