@@ -6,7 +6,7 @@ import Root from "./Root/Root.jsx";
 import AuthProvider from "./AuthProvider/AuthProvider.jsx";
 import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
 import Home from "./components/Home/Home.jsx";
-import "@fontsource/montserrat/400.css"; 
+import "@fontsource/montserrat/400.css";
 import "@fontsource/montserrat/700.css";
 import { Toaster } from "react-hot-toast";
 import Exports from "./components/Exports/Exports.jsx";
@@ -35,19 +35,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/products",
-        Component: Products
+        Component: Products,
       },
       {
         path: "/products/:id",
-        Component: Details
+        Component: Details,
       },
       {
         path: "/login",
-        Component: Login
+        Component: Login,
       },
       {
         path: "/register",
-        Component: Register
+        Component: Register,
       },
       {
         path: "/exports",
@@ -64,9 +64,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
-// All Products,My Exports, My Imports, Add Export routes
-// Login/Register
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
