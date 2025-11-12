@@ -17,6 +17,7 @@ import Login from "./components/Login/Login.jsx";
 import Register from "./components/Register/Register.jsx";
 import Details from "./components/Details/Details.jsx";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
+import ForgotPassword from "./components/ForgetPassword/ForgetPassword.jsx";
 
 export const AuthContext = createContext(null);
 
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         Component: Register,
+      },
+      {
+        path: "/forgot-password",
+        Component: ForgotPassword,
       },
       {
         path: "/exports",
