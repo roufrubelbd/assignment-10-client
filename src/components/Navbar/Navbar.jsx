@@ -1,6 +1,7 @@
 import React, { use, useEffect } from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../../assets/logo.png";
+import logo_dark from "../../assets/logo_dark.png";
 import { AuthContext } from "../../main";
 import toast from "react-hot-toast";
 
@@ -121,7 +122,7 @@ const Navbar = () => {
           </div>
           <Link to="/">
             <a className="text-xl">
-              <img src={logo} alt="logo" className="h-12" />
+              <img src={`${theme === "light" ? logo : logo_dark}`} alt="logo" className="h-12" />
             </a>
           </Link>
         </div>
