@@ -15,7 +15,9 @@ const Imports = () => {
     if (!user?.email) return;
     setLoading(true);
     axios
-      .get(`http://localhost:5000/imports?email=${user?.email}`)
+      .get(
+        `https://assignment-10-server-rosy-seven.vercel.app/imports?email=${user?.email}`
+      )
       .then((res) => {
         setProducts(res.data);
         // console.log(products)
@@ -40,7 +42,9 @@ const Imports = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:5000/imports/${id}`);
+          await axios.delete(
+            `https://assignment-10-server-rosy-seven.vercel.app/imports/${id}`
+          );
           setProducts((prevProducts) =>
             prevProducts.filter((singleProduct) => singleProduct._id !== id)
           );
@@ -64,13 +68,15 @@ const Imports = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-2">
-        My Imported Products
-      </h2>
-      
-      <p className={`mb-6 text-lg ${theme === "light" ? "text-gray-500" : "text-gray-300"}`}>
-          Track and organize all your imported product details in one place.
-        </p>
+      <h2 className="text-3xl font-bold mb-2">My Imported Products</h2>
+
+      <p
+        className={`mb-6 text-lg ${
+          theme === "light" ? "text-gray-500" : "text-gray-300"
+        }`}
+      >
+        Track and organize all your imported product details in one place.
+      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map((product) => (
           <div
@@ -86,14 +92,32 @@ const Imports = () => {
             </figure>
             <div className="card-body">
               <h3 className="card-title">{product.name}</h3>
-              <p className={`font-semibold ${theme === "light" ? "text-gray-700" : "text-gray-300"}`}>
+              <p
+                className={`font-semibold ${
+                  theme === "light" ? "text-gray-700" : "text-gray-300"
+                }`}
+              >
                 Price: ${product.price}
               </p>
-              <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>
+              <p
+                className={`text-sm ${
+                  theme === "light" ? "text-gray-600" : "text-gray-300"
+                }`}
+              >
                 Origin: {product.originCountry}
               </p>
-              <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>Rating: {product.rating} </p>
-              <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>
+              <p
+                className={`text-sm ${
+                  theme === "light" ? "text-gray-600" : "text-gray-300"
+                }`}
+              >
+                Rating: {product.rating}{" "}
+              </p>
+              <p
+                className={`text-sm ${
+                  theme === "light" ? "text-gray-600" : "text-gray-300"
+                }`}
+              >
                 Imported Quantity: {product.importedQuantity}
               </p>
               <div className="card-actions justify-end mt-2">

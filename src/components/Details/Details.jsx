@@ -6,7 +6,7 @@ import Spinner from "../Spinner/Spinner";
 import { AuthContext } from "../../main";
 
 const Details = () => {
-    const { user, theme } = use(AuthContext);
+  const { user, theme } = use(AuthContext);
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ const Details = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products/${id}`)
+      .get(`https://assignment-10-server-rosy-seven.vercel.app/products/${id}`)
       .then((res) => {
         setProduct(res.data);
         setLoading(false);
@@ -33,10 +33,13 @@ const Details = () => {
     try {
       if (importQty <= 0 || importQty > product.availableQuantity) return;
 
-      await axios.post(`http://localhost:5000/imports/${id}`, {
-        quantity: importQty,
-        userEmail: user?.email, 
-      });
+      await axios.post(
+        `https://assignment-10-server-rosy-seven.vercel.app/imports/${id}`,
+        {
+          quantity: importQty,
+          userEmail: user?.email,
+        }
+      );
 
       toast.success(`Successfully imported ${importQty} units`);
       setProduct({
@@ -62,15 +65,41 @@ const Details = () => {
         </figure>
         <div className="card-body lg:w-1/2">
           <h2 className="text-2xl font-bold">{product.name}</h2>
-          <p className={`${theme === "light" ? "text-gray-700" : "text-gray-300"} font-semibold text-lg`}>
+          <p
+            className={`${
+              theme === "light" ? "text-gray-700" : "text-gray-300"
+            } font-semibold text-lg`}
+          >
             Price: ${product.price}
           </p>
-          <p className={`${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>Origin: {product.originCountry}</p>
-          <p className={`${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>Rating: {product.rating}</p>
-          <p className={`${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>
+          <p
+            className={`${
+              theme === "light" ? "text-gray-600" : "text-gray-300"
+            }`}
+          >
+            Origin: {product.originCountry}
+          </p>
+          <p
+            className={`${
+              theme === "light" ? "text-gray-600" : "text-gray-300"
+            }`}
+          >
+            Rating: {product.rating}
+          </p>
+          <p
+            className={`${
+              theme === "light" ? "text-gray-600" : "text-gray-300"
+            }`}
+          >
             Available Quantity: {product.availableQuantity}
           </p>
-          <p className={`${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>Category: {product.category}</p>
+          <p
+            className={`${
+              theme === "light" ? "text-gray-600" : "text-gray-300"
+            }`}
+          >
+            Category: {product.category}
+          </p>
 
           <button
             className="btn btn-sm btn-outline mt-4 rounded-full"
@@ -90,7 +119,13 @@ const Details = () => {
       {showModal && (
         <div className="fixed inset-0 bg-gray-200 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h2 className={`text-xl font-bold mb-4 ${theme === "light" ? "" : " text-gray-700"}`}>Import {product.name}</h2>
+            <h2
+              className={`text-xl font-bold mb-4 ${
+                theme === "light" ? "" : " text-gray-700"
+              }`}
+            >
+              Import {product.name}
+            </h2>
             <input
               type="number"
               min="1"
@@ -98,17 +133,29 @@ const Details = () => {
               value={importQty}
               onChange={(e) => setImportQty(Number(e.target.value))}
               placeholder="Enter quantity"
-              className={`input input-bordered w-full mb-4 ${theme === "light" ? "" : "bg-gray-100 border-gray-700 text-gray-700"}`}
+              className={`input input-bordered w-full mb-4 ${
+                theme === "light"
+                  ? ""
+                  : "bg-gray-100 border-gray-700 text-gray-700"
+              }`}
             />
             <div className="flex justify-end space-x-2">
               <button
-                className={`btn btn-sm btn-outline rounded-full ${theme === "light" ? "border-gray-500 text-gray-500" : "border-gray-700 text-gray-700"}`}
+                className={`btn btn-sm btn-outline rounded-full ${
+                  theme === "light"
+                    ? "border-gray-500 text-gray-500"
+                    : "border-gray-700 text-gray-700"
+                }`}
                 onClick={() => setShowModal(false)}
               >
                 Cancel
               </button>
               <button
-                className={`btn btn-sm btn-outline rounded-full ${theme === "light" ? "border-gray-500 text-gray-500" : "border-gray-700 text-gray-700"}`}
+                className={`btn btn-sm btn-outline rounded-full ${
+                  theme === "light"
+                    ? "border-gray-500 text-gray-500"
+                    : "border-gray-700 text-gray-700"
+                }`}
                 onClick={handleImport}
                 disabled={
                   importQty <= 0 || importQty > product.availableQuantity
@@ -117,7 +164,11 @@ const Details = () => {
                 Submit
               </button>
             </div>
-            <p className={`text-sm ${theme === "light" ? "text-gray-500" : "text-gray-400"} mt-2`}>
+            <p
+              className={`text-sm ${
+                theme === "light" ? "text-gray-500" : "text-gray-400"
+              } mt-2`}
+            >
               Max quantity you can import: {product.availableQuantity}
             </p>
           </div>

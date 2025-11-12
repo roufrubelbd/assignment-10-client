@@ -14,7 +14,9 @@ const LatestAndOthers = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/products?limit=6")
+      .get(
+        "https://assignment-10-server-rosy-seven.vercel.app/products?limit=6"
+      )
       .then((res) => {
         setLatestProducts(res.data);
         setLoading(false);
@@ -27,7 +29,7 @@ const LatestAndOthers = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/products")
+      .get("https://assignment-10-server-rosy-seven.vercel.app/products")
       .then((res) => {
         setProducts(res.data);
         setLoading(false);
@@ -48,14 +50,20 @@ const LatestAndOthers = () => {
       {/* Latest 6 Products */}
       <section>
         <h2 className="text-3xl font-bold mb-2">Latest Products</h2>
-        <p className={`mb-6 ${theme === "light" ? "text-gray-700" : "text-gray-300"} text-lg`}>
+        <p
+          className={`mb-6 ${
+            theme === "light" ? "text-gray-700" : "text-gray-300"
+          } text-lg`}
+        >
           Carefully selected, high-quality products — updated daily.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {latestProducts?.map((product) => (
             <div
               key={product._id}
-              className={`card bg-base-100 shadow-lg border ${theme === "light" ? "border-gray-200" : "border-gray-700"}`}
+              className={`card bg-base-100 shadow-lg border ${
+                theme === "light" ? "border-gray-200" : "border-gray-700"
+              }`}
             >
               <figure className="p-4">
                 <img
@@ -66,18 +74,34 @@ const LatestAndOthers = () => {
               </figure>
               <div className="card-body">
                 <h3 className="card-title">{product.name}</h3>
-                <p className={`${theme === "light" ? "text-gray-700" : "text-gray-300"} font-semibold`}>
+                <p
+                  className={`${
+                    theme === "light" ? "text-gray-700" : "text-gray-300"
+                  } font-semibold`}
+                >
                   Price: ${product.price}
                 </p>
-                <p className={`${theme === "light" ? "text-gray-600" : "text-gray-300"} text-sm`}>
+                <p
+                  className={`${
+                    theme === "light" ? "text-gray-600" : "text-gray-300"
+                  } text-sm`}
+                >
                   Origin: {product.originCountry}
                 </p>
                 <div className="flex justify-between gap-4">
                   <div>
-                    <p className={`${theme === "light" ? "text-gray-600" : "text-gray-300"} text-sm`}>
+                    <p
+                      className={`${
+                        theme === "light" ? "text-gray-600" : "text-gray-300"
+                      } text-sm`}
+                    >
                       Rating: {product.rating}
                     </p>
-                    <p className={`${theme === "light" ? "text-gray-600" : "text-gray-300"} text-sm`}>
+                    <p
+                      className={`${
+                        theme === "light" ? "text-gray-600" : "text-gray-300"
+                      } text-sm`}
+                    >
                       Available: {product.availableQuantity}
                     </p>
                   </div>
@@ -99,7 +123,11 @@ const LatestAndOthers = () => {
       {/* Extra Section 1 - Top Week's  */}
       <section className="my-20">
         <h2 className="text-3xl font-bold mb-2">This Week’s Top Deals</h2>
-        <p className={`mb-8 ${theme === "light" ? "text-gray-700" : "text-gray-300"} text-lg`}>
+        <p
+          className={`mb-8 ${
+            theme === "light" ? "text-gray-700" : "text-gray-300"
+          } text-lg`}
+        >
           Explore our latest tech and gadget collection — innovative, modern,
           and affordable.
         </p>
@@ -117,10 +145,20 @@ const LatestAndOthers = () => {
                   className="object-contain w-24 h-24 rounded-2xl"
                 />
               </div>
-              <p className={`mt-3 text-sm font-medium ${theme === "light" ? "text-gray-700" : "text-gray-300"} w-32 truncate`}>
+              <p
+                className={`mt-3 text-sm font-medium ${
+                  theme === "light" ? "text-gray-700" : "text-gray-300"
+                } w-32 truncate`}
+              >
                 {product.name}
               </p>
-              <p className={`text-xs ${theme === "light" ? "text-gray-500" : "text-gray-400"}`}>£{product.price}</p>
+              <p
+                className={`text-xs ${
+                  theme === "light" ? "text-gray-500" : "text-gray-400"
+                }`}
+              >
+                £{product.price}
+              </p>
             </div>
           ))}
         </div>

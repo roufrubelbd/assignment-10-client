@@ -18,7 +18,9 @@ const Exports = () => {
     if (!user?.email) return;
     setLoading(true);
     axios
-      .get(`http://localhost:5000/exports?email=${user?.email}`)
+      .get(
+        `https://assignment-10-server-rosy-seven.vercel.app/exports?email=${user?.email}`
+      )
       .then((res) => {
         setProducts(res.data);
         // console.log(products)
@@ -43,7 +45,9 @@ const Exports = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:5000/exports/${id}`);
+          await axios.delete(
+            `https://assignment-10-server-rosy-seven.vercel.app/exports/${id}`
+          );
           setProducts((prevProducts) =>
             prevProducts.filter((singleProduct) => singleProduct._id !== id)
           );
@@ -74,7 +78,7 @@ const Exports = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/exports/${updateProduct._id}`,
+        `https://assignment-10-server-rosy-seven.vercel.app/exports/${updateProduct._id}`,
         updatedProductInfo
       );
 
@@ -106,25 +110,25 @@ const Exports = () => {
       <div className="flex flex-col md:flex-row lg:flex-row justify-between items-center md:mb-6 lg:mb-6 ">
         <div>
           <h2 className="text-3xl font-bold mb-2">My Exported Products</h2>
-      <p
-        className={` text-lg ${
-          theme === "light" ? "text-gray-500" : "text-gray-300"
-        }`}
-      >
-        Manage all the products you’ve exported from your inventory.
-      </p>
+          <p
+            className={` text-lg ${
+              theme === "light" ? "text-gray-500" : "text-gray-300"
+            }`}
+          >
+            Manage all the products you’ve exported from your inventory.
+          </p>
         </div>
         <div className="mb-6">
-        <CSVLink
-          data={products}
-          filename={"my-exports.csv"}
-          className="btn btn-outline btn-sm rounded-full border-blue-500 text-blue-600  px-6 font-bold"
-        >
-          Download CSV
-        </CSVLink>
+          <CSVLink
+            data={products}
+            filename={"my-exports.csv"}
+            className="btn btn-outline btn-sm rounded-full border-blue-500 text-blue-600  px-6 font-bold"
+          >
+            Download CSV
+          </CSVLink>
+        </div>
       </div>
-      </div>   
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map((product) => (
           <div
             key={product._id}

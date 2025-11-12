@@ -52,7 +52,7 @@ const Slider = () => {
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
-              {/* Background Image with zoom animation */}
+              
               <motion.img
                 src={slide.image}
                 alt={slide.title}
@@ -67,7 +67,7 @@ const Slider = () => {
                 }}
               />
 
-              {/* Gradient overlay */}
+             
               <div className="absolute inset-0 bg-linear-to-t from-white/90 via-white/70 to-transparent"></div>
 
               {/* Content */}
