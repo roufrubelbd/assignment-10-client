@@ -5,7 +5,7 @@ import Spinner from "../Spinner/Spinner";
 import { AuthContext } from "../../main";
 
 const Add = () => {
-  const { user } = use(AuthContext);
+  const { user, theme } = use(AuthContext);
   const [loading, setLoading] = useState(false);
 
   if (loading) return <Spinner />;
@@ -52,8 +52,9 @@ const Add = () => {
   };
 
   return (
-    <div className="container mx-auto bg-base-300 mt-6 p-8">
-      <div className="p-8 shadow-lg rounded-lg bg-blue-100 w-full md:w-2/2 lg:w-2/5 mx-auto border border-blue-300">
+    <div className={`container mx-auto bg-base-300 mt-6 p-8 ${theme === "light" ? "bg-blue-100 border-blue-400" : "bg-gray-600 border-gray-600"}`}>
+      <div className="p-8 shadow-lg rounded-lg w-full md:w-2/2 lg:w-2/5 mx-auto border">
+      
         <h2 className="mb-4 text-2xl font-bold">Add Exports</h2>
         <div className="">
           <form onSubmit={handleAdd}>
@@ -62,7 +63,7 @@ const Add = () => {
               name="name"
               placeholder="Product Name"
               required
-              className="px-6 py-2 bg-white mb-3 rounded-lg w-full"
+              className={`px-6 py-2 mb-3 rounded-lg w-full ${theme === "light" ? "bg-white" : "bg-gray-100 text-gray-800"}`}
             />{" "}
             <br />
             <input
@@ -70,7 +71,7 @@ const Add = () => {
               name="image"
               placeholder="Product image url"
               required
-              className="px-6 py-2 bg-white mb-3 rounded-lg w-full"
+               className={`px-6 py-2 mb-3 rounded-lg w-full ${theme === "light" ? "bg-white" : "bg-gray-100 text-gray-800"}`}
             />{" "}
             <br />
             <input
@@ -78,7 +79,7 @@ const Add = () => {
               name="price"
               placeholder="Price"
               required
-              className="px-6 py-2 bg-white mb-3 rounded-lg w-full"
+              className={`px-6 py-2 mb-3 rounded-lg w-full ${theme === "light" ? "bg-white" : "bg-gray-100 text-gray-800"}`}
             />{" "}
             <br />
             <input
@@ -86,7 +87,7 @@ const Add = () => {
               name="originCountry"
               placeholder="Origin Country"
               required
-              className="px-6 py-2 bg-white mb-3 rounded-lg w-full"
+              className={`px-6 py-2 mb-3 rounded-lg w-full ${theme === "light" ? "bg-white" : "bg-gray-100 text-gray-800"}`}
             />
             <br />
             <input
@@ -94,7 +95,7 @@ const Add = () => {
               name="rating"
               placeholder="Rating"
               required
-              className="px-6 py-2 bg-white mb-3 rounded-lg w-full"
+              className={`px-6 py-2 mb-3 rounded-lg w-full ${theme === "light" ? "bg-white" : "bg-gray-100 text-gray-800"}`}
             />{" "}
             <br />
             <input
@@ -102,7 +103,7 @@ const Add = () => {
               name="availableQuantity"
               placeholder="Available Quantity"
               required
-              className="px-6 py-2 bg-white mb-3 rounded-lg w-full"
+              className={`px-6 py-2 mb-3 rounded-lg w-full ${theme === "light" ? "bg-white" : "bg-gray-100 text-gray-800"}`}
             />
             <br />
             <input
@@ -110,7 +111,7 @@ const Add = () => {
               name="category"
               placeholder="Category"
               required
-              className="px-6 py-2 bg-white mb-3 rounded-lg w-full"
+              className={`px-6 py-2 mb-3 rounded-lg w-full ${theme === "light" ? "bg-white" : "bg-gray-100 text-gray-800"}`}
             />
             <br />
             <button

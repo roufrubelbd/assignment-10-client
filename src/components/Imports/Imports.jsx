@@ -7,7 +7,7 @@ import { Link } from "react-router";
 import Swal from "sweetalert2";
 
 const Imports = () => {
-  const { user } = use(AuthContext);
+  const { user, theme } = use(AuthContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -67,7 +67,8 @@ const Imports = () => {
       <h2 className="text-3xl font-bold mb-2">
         My Imported Products
       </h2>
-      <p className="mb-6 text-gray-500 text-lg">
+      
+      <p className={`mb-6 text-lg ${theme === "light" ? "text-gray-500" : "text-gray-300"}`}>
           Track and organize all your imported product details in one place.
         </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -85,20 +86,20 @@ const Imports = () => {
             </figure>
             <div className="card-body">
               <h3 className="card-title">{product.name}</h3>
-              <p className="text-gray-700 font-semibold">
+              <p className={`font-semibold ${theme === "light" ? "text-gray-700" : "text-gray-300"}`}>
                 Price: ${product.price}
               </p>
-              <p className="text-gray-600 text-sm">
+              <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>
                 Origin: {product.originCountry}
               </p>
-              <p className="text-gray-600 text-sm">Rating: {product.rating} </p>
-              <p className="text-gray-600 text-sm">
+              <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>Rating: {product.rating} </p>
+              <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>
                 Imported Quantity: {product.importedQuantity}
               </p>
               <div className="card-actions justify-end mt-2">
                 <button
                   onClick={() => handleRemove(product._id)}
-                  className="btn btn-outline btn-sm rounded-full text-red-600 border-red-300"
+                  className="btn btn-outline btn-sm rounded-full text-red-600 border-red-400"
                 >
                   Remove
                 </button>

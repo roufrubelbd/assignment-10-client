@@ -1,11 +1,23 @@
-import React, { use } from "react";
+import React, { use, useEffect } from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../../assets/logo.png";
 import { AuthContext } from "../../main";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const { user, logOutUser } = use(AuthContext);
+  const { user, logOutUser, theme, setTheme } = use(AuthContext);
+  // const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme); //dark
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+    const handleChangeTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
   const handleLogout = () => {
     logOutUser()
       .then(() => {
@@ -75,6 +87,8 @@ const Navbar = () => {
     </>
   );
 
+
+
   return (
     <div className="container mx-auto">
       <div className="navbar bg-base-100">
@@ -117,6 +131,14 @@ const Navbar = () => {
 
         {user ? (
           <div className="navbar-end flex gap-2 items-center">
+            <div>
+              <input
+                onChange={(e) => handleChangeTheme(e.target.checked)}
+                type="checkbox"
+                defaultChecked={localStorage.getItem("theme") === "dark"}
+                className="toggle"
+              />
+            </div>
             <button
               className="btn btn-outline btn-sm rounded-full"
               onClick={handleLogout}
@@ -136,6 +158,14 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="navbar-end flex gap-2 items-center">
+            <div>
+              <input
+                onChange={(e) => handleChangeTheme(e.target.checked)}
+                type="checkbox"
+                defaultChecked={localStorage.getItem("theme") === "dark"}
+                className="toggle"
+              />
+            </div>
             <Link to="/login">
               <a className="btn btn-outline btn-sm rounded-full ">Login</a>
             </Link>

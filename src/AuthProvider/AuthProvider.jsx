@@ -17,6 +17,7 @@ import { AuthContext } from "../main";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -84,6 +85,8 @@ const AuthProvider = ({ children }) => {
     // updateUserProfile,
     resetPassword,
     logOutUser,
+    theme,
+    setTheme,
   };
 
   return <AuthContext value={authInfo}>{children}</AuthContext>;

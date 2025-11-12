@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { use,  useEffect, useState } from "react";
 import { Link } from "react-router";
 import axios from "axios";
 import Spinner from "../Spinner/Spinner";
 // import { AuthContext } from "../../main";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../main";
 
 const AllProducts = () => {
+  const { theme } = use(AuthContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
    const [searchProduct, setSearchProduct] = useState("");
@@ -37,7 +39,7 @@ const AllProducts = () => {
       <div className="flex flex-col md:flex-row lg:flex-row justify-between items-center gap-2">
         <div>
           <h2 className="text-3xl font-bold mb-2">All Products</h2>
-        <p className="mb-6 text-gray-500 text-lg">
+        <p className={`mb-6 ${theme === "light" ? "text-gray-700" : "text-white"} text-lg`}>
           Find everything you need — all in one collection.
         </p>
         </div>
@@ -70,18 +72,18 @@ const AllProducts = () => {
             </figure>
             <div className="card-body">
               <h3 className="card-title">{product.name}</h3>
-              <p className="text-gray-700 font-semibold">
+              <p className={`${theme === "light" ? "text-gray-700" : "text-gray-300"} font-semibold`}>
                 Price: ${product.price}
               </p>
-              <p className="text-gray-600 text-sm">
+              <p className={`${theme === "light" ? "text-gray-600" : "text-gray-300"} text-sm`}>
                 Origin: {product.originCountry}
               </p>
               <div className="flex justify-between gap-4">
                 <div>
-                  <p className="text-gray-600 text-sm">
+                  <p className={`${theme === "light" ? "text-gray-600" : "text-gray-300"} text-sm`}>
                     Rating: {product.rating}{" "}
                   </p>
-                  <p className="text-gray-600 text-sm">
+                  <p className={`${theme === "light" ? "text-gray-600" : "text-gray-300"} text-sm`}>
                     Available: {product.availableQuantity}
                   </p>
                 </div>
