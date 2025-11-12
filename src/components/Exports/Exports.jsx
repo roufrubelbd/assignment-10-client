@@ -5,6 +5,8 @@ import { AuthContext } from "../../main";
 import Spinner from "../Spinner/Spinner";
 // import { Link } from "react-router";
 import Swal from "sweetalert2";
+import { CSVLink } from "react-csv";
+// import { CSVLink } from "react-csv";
 
 const Exports = () => {
   const { user, theme } = use(AuthContext);
@@ -81,15 +83,15 @@ const Exports = () => {
 
         setProducts((prevProduct) =>
           prevProduct.map((singleProduct) =>
-            singleProduct._id === updateProduct._id ? { ...singleProduct, ...updatedProductInfo } : singleProduct
+            singleProduct._id === updateProduct._id
+              ? { ...singleProduct, ...updatedProductInfo }
+              : singleProduct
           )
         );
-        setUpdateProduct(null); 
+        setUpdateProduct(null);
       } else {
         toast.error("Failed to update product");
       }
-
-
     } catch (error) {
       toast.error(error.response?.data?.message || "Error updating product");
     }
@@ -101,12 +103,24 @@ const Exports = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-2">
-        My Exported Products
-      </h2>
-      <p className={`mb-6 text-lg ${theme === "light" ? "text-gray-500" : "text-gray-300"}`}>
-          Manage all the products you’ve exported from your inventory.
-        </p>
+      <h2 className="text-3xl font-bold mb-2">My Exported Products</h2>
+      <p
+        className={`mb-6 text-lg ${
+          theme === "light" ? "text-gray-500" : "text-gray-300"
+        }`}
+      >
+        Manage all the products you’ve exported from your inventory.
+      </p>
+      <div className="mb-6">
+        <CSVLink
+          data={products}
+          filename={"my-exports.csv"}
+          className="btn btn-outline btn-sm rounded-full border-blue-500 text-blue-600  px-6 font-bold"
+        >
+          Download CSV
+        </CSVLink>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map((product) => (
           <div
@@ -122,15 +136,33 @@ const Exports = () => {
             </figure>
             <div className="card-body">
               <h3 className="card-title">{product.name}</h3>
-              
-              <p className={`font-semibold ${theme === "light" ? "text-gray-700" : "text-gray-300"}`}>
+
+              <p
+                className={`font-semibold ${
+                  theme === "light" ? "text-gray-700" : "text-gray-300"
+                }`}
+              >
                 Price: ${product.price}
               </p>
-              <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>
+              <p
+                className={`text-sm ${
+                  theme === "light" ? "text-gray-600" : "text-gray-300"
+                }`}
+              >
                 Origin: {product.originCountry}
               </p>
-              <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>Rating: {product.rating} </p>
-              <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>
+              <p
+                className={`text-sm ${
+                  theme === "light" ? "text-gray-600" : "text-gray-300"
+                }`}
+              >
+                Rating: {product.rating}{" "}
+              </p>
+              <p
+                className={`text-sm ${
+                  theme === "light" ? "text-gray-600" : "text-gray-300"
+                }`}
+              >
                 Imported Quantity: {product.importedQuantity}
               </p>
               <div className="card-actions justify-end mt-2">
@@ -141,7 +173,7 @@ const Exports = () => {
                   Delete
                 </button>
                 <button
-                   onClick={() => setUpdateProduct(product)}
+                  onClick={() => setUpdateProduct(product)}
                   className="btn btn-outline btn-sm rounded-full text-green-600 border-green-600"
                 >
                   Update
@@ -200,7 +232,10 @@ const Exports = () => {
                 >
                   Cancel
                 </button>
-                <button type="submit" className="btn btn-sm btn-outline rounded-full text-green-600 border-green-600">
+                <button
+                  type="submit"
+                  className="btn btn-sm btn-outline rounded-full text-green-600 border-green-600"
+                >
                   Submit
                 </button>
               </div>
