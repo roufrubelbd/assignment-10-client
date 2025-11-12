@@ -1,9 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import toast from "react-hot-toast";
 import Spinner from "../Spinner/Spinner";
+import { AuthContext } from "../../main";
 
 const Add = () => {
+  const { user } = use(AuthContext);
   const [loading, setLoading] = useState(false);
 
   if (loading) return <Spinner />;
@@ -28,6 +30,8 @@ const Add = () => {
       rating,
       availableQuantity,
       category,
+      userEmail: user?.email,
+      createdAt: new Date().toISOString(),
     };
 
     try {
@@ -49,7 +53,7 @@ const Add = () => {
 
   return (
     <div className="container mx-auto bg-base-300 mt-6 p-8">
-      <div className="p-8 shadow-lg rounded-lg bg-blue-100 w-full md:w-1/3 lg:w-1/4 mx-auto border border-blue-300">
+      <div className="p-8 shadow-lg rounded-lg bg-blue-100 w-full md:w-2/2 lg:w-2/5 mx-auto border border-blue-300">
         <h2 className="mb-4 text-2xl font-bold">Add Exports</h2>
         <div className="">
           <form onSubmit={handleAdd}>

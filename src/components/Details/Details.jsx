@@ -51,7 +51,7 @@ const Details = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 w-full md:w-3/4 lg:w-2/3">
       <div className="card lg:card-side bg-base-100 shadow-lg border border-gray-200">
         <figure className="p-4 lg:w-1/2">
           <img

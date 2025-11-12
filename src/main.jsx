@@ -17,7 +17,6 @@ import Login from "./components/Login/Login.jsx";
 import Register from "./components/Register/Register.jsx";
 import Details from "./components/Details/Details.jsx";
 
-
 export const AuthContext = createContext(null);
 
 const router = createBrowserRouter([
@@ -29,12 +28,10 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        // loader: () => fetch("/services.json").then((res) => res.json()),
       },
       {
         path: "/home",
         Component: Home,
-        // loader: () => fetch("/services.json").then((res) => res.json()),
       },
       {
         path: "/products",
@@ -47,27 +44,22 @@ const router = createBrowserRouter([
       {
         path: "/login",
         Component: Login
-        // loader: () => fetch("/services.json").then((res) => res.json()),
       },
       {
         path: "/register",
         Component: Register
-        // loader: () => fetch("/services.json").then((res) => res.json()),
       },
       {
         path: "/exports",
         Component: Exports,
-        // loader: () => fetch("/services.json").then((res) => res.json()),
       },
       {
         path: "/imports",
         Component: Imports,
-        // loader: () => fetch("/services.json").then((res) => res.json()),
       },
       {
         path: "/add",
         Component: Add,
-        // loader: () => fetch("/services.json").then((res) => res.json()),
       },
     ],
   },
