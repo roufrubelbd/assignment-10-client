@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+   const [searchProduct, setSearchProduct] = useState("");
 
   useEffect(() => {
     axios
@@ -22,16 +23,40 @@ const AllProducts = () => {
       });
   }, []);
 
+   const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchProduct.toLowerCase())
+  );
+
   if (loading) return <Spinner />;
 
   if (!products.length)
-    return <p className="text-center mt-10">No products found!</p>;
+    return <p className="text-center mt-10 text-2xl text-amber-500">No products found!</p>;
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-6 text-center">All Products</h2>
+      <div className="flex flex-col md:flex-row lg:flex-row justify-between items-center gap-2">
+        <div>
+          <h2 className="text-3xl font-bold mb-2">All Products</h2>
+        <p className="mb-6 text-gray-500 text-lg">
+          Find everything you need — all in one collection.
+        </p>
+        </div>
+
+      <div className="flex justify-center mb-6">
+        <input
+          type="text"
+          placeholder="Search by product name..."
+          className="input input-bordered border-blue-500 w-full max-w-md"
+          value={searchProduct}
+          onChange={(e) => setSearchProduct(e.target.value)}
+        />
+      </div>
+      </div>
+      {!filteredProducts.length ? (
+        <p className="text-center mt-10 text-2xl text-amber-500">No products found!</p>
+      ) : (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <div
             key={product._id}
             className="card bg-base-100 shadow-lg border border-gray-200"
@@ -73,6 +98,7 @@ const AllProducts = () => {
           </div>
         ))}
       </div>
+)}
     </div>
   );
 };

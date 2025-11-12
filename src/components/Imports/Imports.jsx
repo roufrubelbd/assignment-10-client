@@ -64,9 +64,12 @@ const Imports = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-6 text-center">
+      <h2 className="text-3xl font-bold mb-2">
         My Imported Products
       </h2>
+      <p className="mb-6 text-gray-500 text-lg">
+          Track and organize all your imported product details in one place.
+        </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map((product) => (
           <div

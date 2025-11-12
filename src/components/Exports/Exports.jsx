@@ -101,9 +101,12 @@ const Exports = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-6 text-center">
+      <h2 className="text-3xl font-bold mb-2">
         My Exported Products
       </h2>
+      <p className="mb-6 text-gray-500 text-lg">
+          Manage all the products you’ve exported from your inventory.
+        </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map((product) => (
           <div
@@ -197,7 +200,7 @@ const Exports = () => {
                   Cancel
                 </button>
                 <button type="submit" className="btn btn-sm btn-outline rounded-full text-green-600 border-green-600">
-                  Update
+                  Submit
                 </button>
               </div>
             </form>

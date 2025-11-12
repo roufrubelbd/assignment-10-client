@@ -6,6 +6,7 @@ import Spinner from "../Spinner/Spinner";
 
 const LatestAndOthers = () => {
   const [latestProducts, setLatestProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,7 +22,21 @@ const LatestAndOthers = () => {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/products")
+      .then((res) => {
+        setProducts(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        toast.error(err.response?.data?.message || err.message);
+        setLoading(false);
+      });
+  }, []);
+
   if (loading) return <Spinner />;
+
   if (!latestProducts.length)
     return <p className="text-center mt-10">No latest products found!</p>;
 
@@ -29,7 +44,10 @@ const LatestAndOthers = () => {
     <div className="container mx-auto px-4 py-8">
       {/* Latest 6 Products */}
       <section>
-        <h2 className="text-3xl font-bold mb-6 text-center">Latest Products</h2>
+        <h2 className="text-3xl font-bold mb-2">Latest Products</h2>
+        <p className="mb-6 text-gray-500 text-lg">
+          Carefully selected, high-quality products — updated daily.
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {latestProducts?.map((product) => (
             <div
@@ -76,7 +94,7 @@ const LatestAndOthers = () => {
       </section>
 
       {/* Extra Section 1 - Top Categories */}
-      <section className="text-center my-20">
+      {/* <section className="text-center my-20">
         <h2 className="text-3xl font-bold mb-6">Top Categories</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div className="p-6 bg-blue-50 rounded-2xl shadow hover:scale-105 transition">
@@ -92,7 +110,92 @@ const LatestAndOthers = () => {
             <p className="text-gray-600 text-sm">Innovative tech accessories</p>
           </div>
         </div>
-      </section>
+      </section> */}
+
+      {/* <section className="my-16">
+  <h2 className="text-3xl font-bold text-center mb-8">
+    This Week’s Top Deals
+  </h2>
+
+  <div className="flex gap-6 overflow-x-auto px-4 scrollbar-hide">
+    {[
+      {
+        img: "https://i.postimg.cc/DZLrGQH9/switch.png",
+        title: "Black Friday",
+      },
+      {
+        img: "https://i.postimg.cc/Ss5tZ8Hz/tyre.png",
+        title: "10% off tyres",
+      },
+      {
+        img: "https://i.postimg.cc/9MnkDHKm/tablet.png",
+        title: "Up to 50% off refurb tech",
+      },
+      {
+        img: "https://i.postimg.cc/zfGvpKyx/chair.png",
+        title: "Up to 40% off refurb furniture",
+      },
+      {
+        img: "https://i.postimg.cc/T1mb5DbB/box.png",
+        title: "Shop local, sell local",
+      },
+      {
+        img: "https://i.postimg.cc/jSmbf4Bg/watch.png",
+        title: "Up to 50% off smartwatches",
+      },
+      {
+        img: "https://i.postimg.cc/tCZDrJr8/jacket.png",
+        title: "M&S x Frankie Bridge",
+      },
+    ].map((item, index) => (
+      <div
+        key={index}
+        className="flex flex-col items-center min-w-[150px] text-center"
+      >
+        <div className="w-28 h-28 flex items-center justify-center bg-gray-100 rounded-full overflow-hidden">
+          <img
+            src={item.img}
+            alt={item.title}
+            className="object-contain w-20 h-20"
+          />
+        </div>
+        <p className="mt-3 text-sm font-medium text-gray-700 w-28">
+          {item.title}
+        </p>
+      </div>
+    ))}
+  </div>
+</section> */}
+
+<section className="my-20">
+      <h2 className="text-3xl font-bold mb-2">
+        This Week’s Top Deals
+      </h2>
+      <p className=" text-gray-600 mb-8 text-lg">
+        Explore our latest tech and gadget collection — innovative, modern, and affordable.
+      </p>
+
+      <div className="flex gap-10 overflow-x-auto px-4 scrollbar-hide">
+        {products.map((product) => (
+          <div
+            key={product._id}
+            className="flex flex-col items-center min-w-[160px] text-center"
+          >
+            <div className="w-42 h-42 flex items-center justify-center bg-gray-100 rounded-full overflow-hidden p-4">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="object-contain w-24 h-24 rounded-2xl"
+              />
+            </div>
+            <p className="mt-3 text-sm font-medium text-gray-700 w-32 truncate">
+              {product.name}
+            </p>
+            <p className="text-xs text-gray-500">£{product.price}</p>
+          </div>
+        ))}
+      </div>
+    </section>
 
       {/* Extra Section 2 - Why Choose Us */}
       <section className="bg-linear-to-r from-blue-600 to-black text-white py-12 rounded-2xl shadow-xl mt-16">
