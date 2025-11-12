@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import axios from "axios";
 import Spinner from "../Spinner/Spinner";
-import { AuthContext } from "../../main";
+// import { AuthContext } from "../../main";
 import toast from "react-hot-toast";
 
 const AllProducts = () => {

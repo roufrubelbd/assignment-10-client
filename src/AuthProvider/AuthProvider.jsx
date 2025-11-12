@@ -12,7 +12,7 @@ import {
 import { useEffect } from "react";
 import { auth } from "../firebase/firebase.init";
 import { AuthContext } from "../main";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
