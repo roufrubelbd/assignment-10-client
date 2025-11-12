@@ -1,16 +1,39 @@
-# React + Vite
+# TechBridge Asia
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**TechBridge Asia** is a global trade management web application that helps users efficiently manage import and export products between countries.  
+This platform simplifies inventory handling, pricing, and cross-border trade operations.
 
-Currently, two official plugins are available:
+🔗 **Live Site:** https://assignment-10-business-hub.web.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Role-Based Access Control:**  
+  Exporters and importers have separate dashboards to manage their specific operations.
 
-## Expanding the ESLint configuration
+- **Product Management:**  
+  Users can add, update, and delete their own export or import products with full CRUD functionality.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Download CSV Support:**  
+  Export product lists directly to CSV format with a single click for offline record keeping.
+
+- **Light/Dark Theme Support:**  
+  Switch between light and dark modes using a simple toggle (powered by DaisyUI + Tailwind CSS).
+
+- **Authentication & Authorization:**  
+  Firebase authentication ensures secure login and access to protected routes.
+
+- **Modern Stack:**  
+  Built using **React 19**, **React Router 7**, **Axios**, **Tailwind CSS**, **DaisyUI**, and **SweetAlert2** for an elegant UI/UX.
+
+---
+
+## Tech Stack
+
+- **Frontend:** React, Tailwind CSS, DaisyUI, Framer Motion
+- **Routing:** React Router
+- **State Management:** React Context API
+- **Notifications:** React Hot Toast, SweetAlert2
+- **Data Handling:** Axios, React CSV
+- **Backend:** Express.js + MongoDB
