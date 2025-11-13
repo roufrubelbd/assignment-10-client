@@ -45,7 +45,6 @@ const ForgotPassword = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-
           <button
             type="submit"
             className={`btn btn-outline bg-white rounded-full w-full ${theme === "dark" ? "text-black border-black" : "text-gray-700 border-gray-500"}`}
