@@ -51,7 +51,7 @@ const Slider = () => {
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative w-full  overflow-hidden">
+            <div className="relative w-full overflow-hidden">
               <motion.img
                 src={slide.image}
                 alt={slide.title}
@@ -71,7 +71,7 @@ const Slider = () => {
               {/* Content */}
               <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-blue-700">
                 <motion.h2
-                  className="text-3xl md:text-5xl font-bold mb-3 drop-shadow-lg"
+                  className="text-xl md:text-5xl font-bold mb-3 drop-shadow-lg overflow-hidden"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
@@ -79,7 +79,7 @@ const Slider = () => {
                   {slide.title}
                 </motion.h2>
                 <motion.p
-                  className="text-lg md:text-xl max-w-2xl mx-auto"
+                  className="text-base md:text-xl max-w-2xl mx-auto w-3/4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.2 }}
