@@ -39,7 +39,7 @@ const Slider = () => {
   if (loading) return <Spinner />;
 
   return (
-    <div className="w-full md:h-[60vh] container mx-auto relative mt-6 mb-20">
+    <div className="w-full md:h-[60vh] container mx-auto relative mt-4 mb-4">
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         navigation
@@ -51,11 +51,11 @@ const Slider = () => {
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative w-full h-full overflow-hidden">
+            <div className="relative w-full  overflow-hidden">
               <motion.img
                 src={slide.image}
                 alt={slide.title}
-                className="w-full h-full object-cover"
+                className="w-full object-cover md:h-[60vh]"
                 initial={{ scale: 1 }}
                 animate={{ scale: 1.1 }}
                 transition={{
