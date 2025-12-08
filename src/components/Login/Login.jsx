@@ -5,7 +5,8 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 const Login = () => {
-  const { loginUser, googleLogin, setLoading, setUser, theme } = use(AuthContext);
+  const { loginUser, googleLogin, setLoading, setUser, theme } =
+    use(AuthContext);
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -51,12 +52,25 @@ const Login = () => {
   };
   return (
     <div className=" bg-linear-to-r from-blue-600 to-black mt-6  text-center min-h-screen flex items-center justify-center">
-      <div className={`p-6 ${theme === "light" ? "bg-white" : "bg-gray-200"} rounded-lg shadow-sm space-y-3 w-4/5 md:w-1/3 lg:w-1/3 mx-auto border border-base-300`}>
+      <div
+        className={`p-6 ${
+          theme === "light" ? "bg-white" : "bg-gray-200"
+        } rounded-lg shadow-sm space-y-3 w-4/5 md:w-1/3 lg:w-1/3 mx-auto border border-base-300`}
+      >
         <h1 className="text-2xl font-bold text-blue-500">Login here!</h1>
-        <form onSubmit={handleLogin} className={` ${theme === "light" ? "bg-white" : "bg-gray-200"}  space-y-2`}>
+        <form
+          onSubmit={handleLogin}
+          className={` ${
+            theme === "light" ? "bg-white" : "bg-gray-200"
+          }  space-y-2`}
+        >
           <input
             type="email"
-            className={`input w-full ${theme === "light" ? "input-bordered" : "input-bordered bg-white text-black"}`}
+            className={`input w-full ${
+              theme === "light"
+                ? "input-bordered"
+                : "input-bordered bg-white text-black"
+            }`}
             name="email"
             placeholder="Your Email"
             value={email}
@@ -65,7 +79,11 @@ const Login = () => {
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
-              className={`input w-full pr-10 ${theme === "light" ? "input-bordered" : "input-bordered bg-white text-black"}`}
+              className={`input w-full pr-10 ${
+                theme === "light"
+                  ? "input-bordered"
+                  : "input-bordered bg-white text-black"
+              }`}
               name="password"
               placeholder="Your Password"
             />
@@ -86,19 +104,31 @@ const Login = () => {
               Forgot password?
             </Link>
           </div>
-          <button className={`btn btn-outline rounded-full px-6 ${theme === "light" ? "" : "bg-white text-black"}`}>
+          <button
+            className={`btn btn-outline rounded-full px-6 ${
+              theme === "light" ? "" : "bg-white text-black"
+            }`}
+          >
             Login
           </button>
         </form>
 
         <div>
-          <span className={`${theme === "light" ? "text-black" : "text-gray-800"}`}>New here?</span>{" "}
+          <span
+            className={`${theme === "light" ? "text-black" : "text-gray-800"}`}
+          >
+            New here?
+          </span>{" "}
           <Link to="/register" className="text-blue-600 font-medium underline">
             Register
           </Link>
         </div>
         <div>
-          <p className={`${theme === "light" ? "text-black" : "text-gray-800"}`}>or</p>
+          <p
+            className={`${theme === "light" ? "text-black" : "text-gray-800"}`}
+          >
+            or
+          </p>
         </div>
 
         <button
