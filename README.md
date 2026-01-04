@@ -7,13 +7,24 @@ This platform simplifies inventory handling, pricing, and cross-border trade ope
 
 ---
 
-## 🚀 Features
+##  Features
 
 - **Role-Based Access Control:**  
   Exporters and importers have separate dashboards to manage their specific operations.
 
 - **Product Management:**  
   Users can add, update, and delete their own export or import products with full CRUD functionality.
+
+  - **User Dashboard (Activity Overview):**
+Each logged-in user gets a personalized dashboard that provides:
+
+Summary cards showing total exports and total imports
+
+A visual analytics chart displaying import vs export activity over time
+
+A recent activity table showing latest imported products
+
+Quick access to user-specific actions like managing exports, imports, and logout
 
 - **Download CSV Support:**  
   Export product lists directly to CSV format with a single click for offline record keeping.
@@ -28,6 +39,29 @@ This platform simplifies inventory handling, pricing, and cross-border trade ope
   Built using **React 19**, **React Router 7**, **Axios**, **Tailwind CSS**, **DaisyUI**, and **SweetAlert2** for an elegant UI/UX.
 
 ---
+
+## User Dashboard Activities
+
+The User Dashboard acts as a centralized control panel where users can:
+
+View a welcome section with user identity
+
+Monitor trade performance using charts and analytics
+
+Track import and export history
+
+Quickly navigate to:
+
+Add new export products
+
+Manage imported items
+
+View detailed product information
+
+Securely log out from the dashboard dropdown
+
+This dashboard ensures users can make informed decisions using real-time visual data.
+
 
 ## Tech Stack
 

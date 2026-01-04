@@ -56,14 +56,10 @@ const Add = () => {
 
   return (
     <div
-      className={`container mx-auto bg-base-300 mt-6 p-8 ${
-        theme === "light"
-          ? "bg-blue-100 border-blue-400"
-          : "bg-gray-600 border-gray-600"
-      }`}
+      className={`container mx-auto p-4 `}
     >
-      <div className="p-8 shadow-lg rounded-lg w-full md:w-2/2 lg:w-2/5 mx-auto border">
-        <h2 className="mb-4 text-2xl font-bold">Add Exports</h2>
+      <div className="p-4 shadow rounded-lg w-full md:w-2/2 lg:w-2/5 mx-auto border border-gray-300">
+        <h2 className="mb-2 text-xl font-bold">Add Exports</h2>
         <div className="">
           <form onSubmit={handleAdd}>
             <input
@@ -137,7 +133,7 @@ const Add = () => {
             />
             <br />
             <button
-              className="btn btn-sm btn-outline rounded-full w-full font-bold"
+              className="btn btn-sm btn-outline rounded w-full font-bold"
               type="submit"
             >
               Add Export

@@ -46,7 +46,7 @@ const LatestAndOthers = () => {
     return <p className="text-center mt-10">No latest products found!</p>;
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="px-1 py-8">
       {/* Latest 6 Products */}
       <section>
         <h2 className="text-3xl font-bold mb-2">Latest Products</h2>
@@ -57,23 +57,18 @@ const LatestAndOthers = () => {
         >
           Carefully selected, high-quality products — updated daily.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2">
           {latestProducts?.map((product) => (
-            <div
-              key={product._id}
-              className={`card bg-base-100 shadow-lg border ${
-                theme === "light" ? "border-gray-200" : "border-gray-700"
-              }`}
-            >
-              <figure className="p-4">
+            <div key={product._id} className="card bg-base-100 shadow">
+              <figure className="px-2 pt-2">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="rounded-lg h-48 w-full object-cover"
+                  className="rounded h-38 w-full object-cover"
                 />
               </figure>
-              <div className="card-body">
-                <h3 className="card-title">{product.name}</h3>
+              <div className="p-2">
+                <h3 className="">{product.name}</h3>
                 <p
                   className={`${
                     theme === "light" ? "text-gray-700" : "text-gray-300"
@@ -81,22 +76,26 @@ const LatestAndOthers = () => {
                 >
                   Price: ${product.price}
                 </p>
-                <p
-                  className={`${
-                    theme === "light" ? "text-gray-600" : "text-gray-300"
-                  } text-sm`}
-                >
-                  Origin: {product.originCountry}
-                </p>
+
+                <div className="flex gap-2 justify-between items-center">
+                  <p
+                    className={`${
+                      theme === "light" ? "text-gray-600" : "text-gray-300"
+                    } text-sm`}
+                  >
+                    Origin: {product.originCountry}
+                  </p>
+                  <p
+                    className={`${
+                      theme === "light" ? "text-gray-600" : "text-gray-300"
+                    } text-sm`}
+                  >
+                    Rating: {product.rating}{" "}
+                  </p>
+                </div>
+
                 <div className="flex justify-between gap-4">
                   <div>
-                    <p
-                      className={`${
-                        theme === "light" ? "text-gray-600" : "text-gray-300"
-                      } text-sm`}
-                    >
-                      Rating: {product.rating}
-                    </p>
                     <p
                       className={`${
                         theme === "light" ? "text-gray-600" : "text-gray-300"
@@ -105,10 +104,10 @@ const LatestAndOthers = () => {
                       Available: {product.availableQuantity}
                     </p>
                   </div>
-                  <div className="card-actions justify-end mt-2">
+                  <div>
                     <Link
                       to={`/products/${product._id}`}
-                      className="btn btn-outline rounded-full btn-sm"
+                      className="btn btn-xs rounded"
                     >
                       See Details
                     </Link>
@@ -138,7 +137,7 @@ const LatestAndOthers = () => {
               key={product._id}
               className="flex flex-col items-center min-w-[160px] text-center"
             >
-              <div className="w-42 h-42 flex items-center justify-center bg-gray-100 rounded-full overflow-hidden p-4">
+              <div className="w-42 h-42 flex items-center justify-center bg-base-100 rounded-full overflow-hidden p-4">
                 <img
                   src={product.image}
                   alt={product.name}

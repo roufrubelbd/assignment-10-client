@@ -2,7 +2,6 @@ import { use, useEffect, useState } from "react";
 import { Link } from "react-router";
 import axios from "axios";
 import Spinner from "../Spinner/Spinner";
-// import { AuthContext } from "../../main";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../main";
 
@@ -67,21 +66,18 @@ const AllProducts = () => {
           No products found!
         </p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2">
           {filteredProducts.map((product) => (
-            <div
-              key={product._id}
-              className="card bg-base-100 shadow-lg border border-gray-200"
-            >
-              <figure className="px-4 pt-4">
+            <div key={product._id} className="card bg-base-100 shadow">
+              <figure className="px-2 pt-2">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="rounded-lg h-48 w-full object-cover"
+                  className="rounded h-38 w-full object-cover"
                 />
               </figure>
-              <div className="card-body">
-                <h3 className="card-title">{product.name}</h3>
+              <div className="p-2">
+                <h3 className="">{product.name}</h3>
                 <p
                   className={`${
                     theme === "light" ? "text-gray-700" : "text-gray-300"
@@ -89,22 +85,26 @@ const AllProducts = () => {
                 >
                   Price: ${product.price}
                 </p>
-                <p
+
+                <div className="flex gap-2 justify-between items-center">
+                  <p
                   className={`${
                     theme === "light" ? "text-gray-600" : "text-gray-300"
                   } text-sm`}
                 >
                   Origin: {product.originCountry}
                 </p>
+                <p
+                  className={`${
+                    theme === "light" ? "text-gray-600" : "text-gray-300"
+                  } text-sm`}
+                >
+                  Rating: {product.rating}{" "}
+                </p>
+                </div>
+
                 <div className="flex justify-between gap-4">
                   <div>
-                    <p
-                      className={`${
-                        theme === "light" ? "text-gray-600" : "text-gray-300"
-                      } text-sm`}
-                    >
-                      Rating: {product.rating}{" "}
-                    </p>
                     <p
                       className={`${
                         theme === "light" ? "text-gray-600" : "text-gray-300"
@@ -113,10 +113,10 @@ const AllProducts = () => {
                       Available: {product.availableQuantity}
                     </p>
                   </div>
-                  <div className="card-actions justify-end mt-2">
+                  <div>
                     <Link
                       to={`/products/${product._id}`}
-                      className="btn btn-outline btn-sm rounded-full"
+                      className="btn btn-xs rounded"
                     >
                       See Details
                     </Link>

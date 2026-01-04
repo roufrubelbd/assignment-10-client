@@ -1,10 +1,8 @@
 import React, { use } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/effect-fade";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
 import { AuthContext } from "../../main";
@@ -39,65 +37,47 @@ const Slider = () => {
   if (loading) return <Spinner />;
 
   return (
-    <div className="w-full md:h-[60vh] container mx-auto relative mt-4 mb-4">
+    <div className="py-2">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectFade]}
-        navigation
+        modules={[Autoplay]}
         pagination={{ clickable: true }}
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
-        effect="fade"
+        autoplay={{ delay: 4000 }}
         loop
-        className="rounded-2xl overflow-hidden"
+        className="rounded"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative w-full overflow-hidden">
-              <motion.img
-                src={slide.image}
-                alt={slide.title}
-                className="w-full object-cover md:h-[60vh]"
-                initial={{ scale: 1 }}
-                animate={{ scale: 1.1 }}
-                transition={{
-                  duration: 4,
-                  ease: "easeOut",
-                  repeat: Infinity,
-                  repeatType: "mirror",
-                }}
-              />
+            {/* SLIDE WRAPPER */}
+            <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10 min-h-[40vh] px-6">
+              {/* LEFT IMAGE */}
+              <div className="overflow-hidden rounded">
+                <motion.img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="w-full h-full object-cover"
+                  initial={{ scale: 1 }}
+                  animate={{ scale: 1.05 }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                  }}
+                />
+              </div>
 
-              <div className="absolute inset-0 bg-linear-to-t from-white/90 via-white/70 to-transparent"></div>
-
-              {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-blue-700">
-                <motion.h2
-                  className="text-xl md:text-5xl font-bold mb-3 drop-shadow-lg overflow-hidden"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                >
+              {/* RIGHT CONTENT */}
+              <div className="relative z-10 max-w-lg">
+                <h2 className="text-xl md:text-2xl font-bold text-info leading-tight">
                   {slide.title}
-                </motion.h2>
-                <motion.p
-                  className="text-base md:text-xl max-w-2xl mx-auto w-3/4"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.2 }}
-                >
-                  {slide.subtitle}
-                </motion.p>
+                </h2>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.4 }}
-                >
-                  <Link to="/products">
-                    <button className="mt-6 btn btn-outline btn-sm px-4 py-1 rounded-full shadow-lg hover:shadow-emerald-400/40 transition-all duration-300">
-                      Jump on Store →
-                    </button>
-                  </Link>
-                </motion.div>
+                <p className="mt-4 text-gray-600">{slide.subtitle}</p>
+
+                <Link to="/products">
+                  <button className="mt-4 btn btn-info btn-xs px-2">
+                    Jump on Store →
+                  </button>
+                </Link>
               </div>
             </div>
           </SwiperSlide>

@@ -18,6 +18,10 @@ import Register from "./components/Register/Register.jsx";
 import Details from "./components/Details/Details.jsx";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 import ForgotPassword from "./components/ForgetPassword/ForgetPassword.jsx";
+import ContactUs from "./components/ContactUs.jsx";
+import About from "./components/About.jsx";
+import Privacy from "./components/Privacy.jsx";
+import UserDashboard from "./components/UserDashboard.jsx";
 
 export const AuthContext = createContext(null);
 
@@ -41,7 +45,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/products/:id",
-        element: <PrivateRoute><Details /></PrivateRoute>,
+        element: <Details />,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs />,
+      },
+      {
+        path: "/privacy",
+        element: <Privacy />,
+      },
+      {
+        path: "/dashboard/user",
+        element: <UserDashboard />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/login",
@@ -57,15 +77,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/exports",
-        element: <PrivateRoute><Exports /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Exports />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/imports",
-        element: <PrivateRoute><Imports /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Imports />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/add",
-        element: <PrivateRoute><Add /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Add />
+          </PrivateRoute>
+        ),
       },
     ],
   },
