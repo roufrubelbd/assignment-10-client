@@ -2,7 +2,7 @@ import React from "react";
 
 const Privacy = () => {
   return (
-    <div className="min-h-screen px-1  py-10">
+    <div className="min-h-screen px-1 container mx-auto py-10">
       <div className="">
         {/* Page Title */}
         <h1 className="text-xl md:text-2xl font-bold text-center mb-6">
